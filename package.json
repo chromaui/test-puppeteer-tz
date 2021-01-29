@@ -1,0 +1,13 @@
+{
+  "name": "test-puppeteer-tz",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-aws-lambda": "5.1.0",
+    "puppeteer-core": "~5.1.0"
+  },
+  "devDependencies": {
+    "serverless": "^2.21.1"
+  }
+}
