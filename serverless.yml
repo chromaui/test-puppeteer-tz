@@ -1,0 +1,23 @@
+service: test-puppeteer-tz
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-2
+
+layers:
+  # These are the files that come bundled in the aws/ directory of https://github.com/alixaxel/chrome-aws-lambda
+  chrome:
+    path: layers/chrome
+    description: Required .so and fontconfig files to run Chrome on AWS Linux 2
+
+functions:
+  basic:
+    memorySize: 1536
+    timeout: 300 # maximum on lambda is 300
+    layers:
+      - { Ref: ChromeLambdaLayer }
+    handler: index.index
+    package:
+      include:
+        - ./**
