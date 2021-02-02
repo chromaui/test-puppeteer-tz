@@ -1,9 +1,12 @@
-const { executablePath, puppeteer } = require('chrome-aws-lambda');
+const { executablePath, defaultViewport, args, headless, puppeteer } = require('chrome-aws-lambda');
 
 const index = async (event, context, callback) => {
   const browser = await puppeteer.launch({
-    // args,
+    args: args,
+    defaultViewport: defaultViewport,
     executablePath: await executablePath,
+    headless: headless,
+    ignoreHTTPSErrors: true,
   });
 
   const page = await browser.newPage();
@@ -16,7 +19,10 @@ const index = async (event, context, callback) => {
 
   await browser.close();
 
-  return result;
+  return {
+    node: new Date().toLocaleTimeString("en-GB", { timeZoneName: 'short'}),
+    chrome: result
+  };
 };
 
 if (require.main === module) {
