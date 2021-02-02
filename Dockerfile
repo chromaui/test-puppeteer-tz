@@ -30,6 +30,7 @@ COPY yarn.lock .
 
 RUN yarn
 
+COPY index.html /index.html
 COPY index.js .
 
 ENTRYPOINT ["/usr/local/bin/aws-lambda-rie", "/node_modules/.bin/aws-lambda-ric"]

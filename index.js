@@ -11,7 +11,7 @@ const index = async (event, context, callback) => {
 
   const page = await browser.newPage();
 
-  await page.goto('https://jsbin.com/jirokasimu');
+  await page.goto('file:///index.html');
 
   const result = await page.evaluate(() =>
     new Date().toLocaleTimeString('en-GB', { timeZoneName: 'short' })
